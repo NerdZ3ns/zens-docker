@@ -22,7 +22,11 @@ pacman -Sy --needed --noconfirm \
 	tmate tmux screen mlocate unace unrar p7zip \
 	sharutils uudeview arj cabextract file-roller \
 	dtc brotli axel gawk detox clang gcc gcc-libs \
-	flatpak
+	flatpak zsh
+
+# zsh
+chsh -s /bin/zsh root
+curl -sL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 
 # python and pip version
 python --version; pip --version
