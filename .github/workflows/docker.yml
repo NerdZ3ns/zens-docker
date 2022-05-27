@@ -1,42 +1,31 @@
-name: Build and Push
+name: Arch Image
 
 on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
   push:
     branches:
-      - arch
-  workflow_dispatch:
-   
-env:
-  # Change these values if you have forked it for your own works
-  # Use Lowercase vaue of your Username
-  GITHUB_USERNAME: sushrut1101
-  GITHUB_EMAIL: guptasushrut@gmail.com
-
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-  # Image name and tag. MUST be lowercase
-  IMAGE_NAME: docker
-  IMAGE_TAG: arch
+      - 'arch'
 
 jobs:
-  push:
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      -
+        name: Checkout
         uses: actions/checkout@v2
-
-      - name: Configuring git
-        run: |
-          git config --global user.name $GITHUB_USERNAME
-          git config --global user.email $GITHUB_EMAIL
-      - name: Logging in to Docker
-        run: |
-          echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
-      - name: Building the Image
-        run: |
-          docker build -t ghcr.io/${GITHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG} .
-          echo "Build Completed Successfully!"
-      - name: Pushing the Image
-        run: |
-          docker push ghcr.io/${GITHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: |
+            atomxorg/arch-linux:latest
