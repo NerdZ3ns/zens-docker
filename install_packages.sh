@@ -9,20 +9,22 @@ pacman -Syyu --needed --noconfirm 2>&1 | grep -v "warning: could not get file in
 # Install Basic Packages
 pacman -Sy --needed --noconfirm \
 	sudo nano git curl wget rsync aria2 rclone \
-	python2 python3 python-pip zip unzip cmake \
+	python2 python3 python3-pip zip unzip cmake \
 	make neofetch speedtest-cli inetutils cpio \
 	jdk8-openjdk lzip dpkg openssl ccache repo \
 	libelf base-devel openssh lz4 jq go ncurses \
 	bison flex ninja uboot-tools z3 glibc dpkg \
 	multilib-devel bc htop python-setuptools   \
-	util-linux man
+	util-linux man python-is-python3
 
 # More Packages
 pacman -Sy --needed --noconfirm \
 	tmate tmux screen mlocate unace unrar p7zip \
 	sharutils uudeview arj cabextract file-roller \
 	dtc brotli axel gawk detox clang gcc gcc-libs \
-	flatpak zsh
+	flatpak zsh asp kmod pahole xmlto python-sphinx \
+	python-sphinx_rtd_theme graphviz imagemagick svn \
+	patchelf lld llvm
 
 # zsh
 chsh -s /bin/zsh root
@@ -55,5 +57,8 @@ sudo chmod -R a+rwx .
 sudo -u testuser bash ./aosp-build-env.sh
 cd -
 
-# Use python2 by default
-ln -sf /usr/bin/python{2,}
+# Fix pod2man missing error
+export PATH=/usr/bin/core_perl:$PATH
+
+# Create a symlink for z3
+ln -s /usr/lib/libz3.so /usr/lib/libz3.so.4
