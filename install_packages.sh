@@ -9,22 +9,18 @@ pacman -Syyu --needed --noconfirm 2>&1 | grep -v "warning: could not get file in
 # Install Basic Packages
 pacman -Sy --needed --noconfirm \
 	sudo nano git curl wget rsync aria2 rclone \
-	python2 python3 python-pip zip unzip cmake \
+	python3 python-pip zip unzip cmake graphviz \
 	make neofetch speedtest-cli inetutils cpio \
 	jdk8-openjdk lzip dpkg openssl ccache repo \
 	libelf base-devel openssh lz4 jq go ncurses \
 	bison flex ninja uboot-tools z3 glibc dpkg \
 	multilib-devel bc htop python-setuptools   \
-	util-linux man python-is-python3
-
-# More Packages
-pacman -Sy --needed --noconfirm \
-	tmate tmux screen mlocate unace unrar p7zip \
+	util-linux man tmate tmux screen mlocate \
+        unace unrar p7zip patchelf lld llvm imagemagick \
 	sharutils uudeview arj cabextract file-roller \
 	dtc brotli axel gawk detox clang gcc gcc-libs \
 	flatpak zsh asp kmod pahole xmlto python-sphinx \
-	python-sphinx_rtd_theme graphviz imagemagick svn \
-	patchelf lld llvm
+	python-sphinx_rtd_theme svn
 
 # zsh
 chsh -s /bin/zsh root
