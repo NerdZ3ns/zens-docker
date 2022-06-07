@@ -9,7 +9,7 @@ pacman -Syyu --needed --noconfirm 2>&1 | grep -v "warning: could not get file in
 # Install Basic Packages
 pacman -Sy --needed --noconfirm \
 	sudo nano git curl wget rsync aria2 rclone \
-	python2 python3 python3-pip zip unzip cmake \
+	python2 python3 python-pip zip unzip cmake \
 	make neofetch speedtest-cli inetutils cpio \
 	jdk8-openjdk lzip dpkg openssl ccache repo \
 	libelf base-devel openssh lz4 jq go ncurses \
