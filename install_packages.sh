@@ -31,16 +31,16 @@ chsh -s /bin/zsh root
 curl -sL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 
 # python and pip version
-python --version; pip --version
+python3 --version; pip3 --version
 
 # Install Some pip packages
-pip install \
+pip3 install \
 	twrpdtgen telegram-send backports.lzma docopt \
 	extract-dtb protobuf pycrypto docopt zstandard \
 	setuptools
 
 # pip git packages
-pip install \
+pip3 install \
 	git+https://github.com/samloader/samloader.git
 
 # Create a non-root user for AUR
